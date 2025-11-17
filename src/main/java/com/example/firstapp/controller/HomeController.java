@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.Year;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -107,15 +108,31 @@ public class HomeController {
         model.addAttribute("number", number);
         model.addAttribute("ans", ans);
 
+        //view 에서 판단 하는 방법
+//        model.addAttribute("number", number); // 바로 넘겨줌
+        
         return "oddeven";
     }
-
-
-
 
     // 나이계산 (Year클래스)
     // /age/{birthYear} => 현재 나이를 계산해서 출력
     // /age/1990 => 36살입니다.
+    @GetMapping("age/{birthYear}")
+    public String age(@PathVariable int birthYear, Model model){
+        int year = Year.now().getValue();
+        int currentAge = year - birthYear;
+        model.addAttribute("birthYear", birthYear);
+        model.addAttribute("currentAge", currentAge);
+        return "age";
+    }
 
+    @GetMapping("/ping")
+    public String ping(Model model){
+        return "ping";
+    }
 
+    @GetMapping("/pong")
+    public String pong(Model model){
+        return "pong";
+    }
 }
