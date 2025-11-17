@@ -97,8 +97,8 @@ public class HomeController {
 
     // 짝수 홀수 판별
     // number/{num} => 짝수인지 홀수인지 판별해서 화면에 출력
-    @GetMapping("oddOrEven/{number}")
-    public String oddOrEven(@PathVariable int number, Model model){
+    @GetMapping("oddeven/{number}")
+    public String oddeven(@PathVariable int number, Model model){
         String ans = "";
         if(number % 2 == 0) {
             ans = "짝수";
@@ -107,7 +107,7 @@ public class HomeController {
         model.addAttribute("number", number);
         model.addAttribute("ans", ans);
 
-        return "oddOrEven";
+        return "oddeven";
     }
 
 
